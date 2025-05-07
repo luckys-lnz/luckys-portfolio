@@ -40,10 +40,10 @@ export function HeroSection() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeInOut" }}
             className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-muted-foreground"
           >
-            I build stuffs for the Internet.
+            I build <span className="text-primary">apps</span> for the Internet.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -51,7 +51,9 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-muted-foreground text-base md:text-lg max-w-xl mt-4"
           >
-            I'm a Software Engineer specializing in building Web applications and softwares on Demand.
+            I'm a Software Engineer specializing in building{" "}
+            <span className="text-primary">web applications</span> and custom
+            software solutions.
           </motion.p>
 
           <motion.div
