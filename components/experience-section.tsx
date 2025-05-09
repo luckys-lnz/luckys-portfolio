@@ -21,7 +21,7 @@ export function ExperienceSection() {
 
   const experiences: Experience[] = [
     {
-      title: "Senior Software Engineer",
+      title: "Software Engineer",
       company: "Freelance",
       date: "January 2024 - Present",
       location: "Remote",
@@ -53,7 +53,7 @@ export function ExperienceSection() {
       title: "Web Developer",
       company: "TheDevBuild",
       date: "January 2023 - February 2024",
-      location: "Boston, MA",
+      location: "Remote",
       description: [
         "Built and maintained client websites using HTML, CSS, and JavaScript",
         "Implemented responsive designs that work across all device sizes",
