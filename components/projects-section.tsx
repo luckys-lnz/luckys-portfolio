@@ -45,13 +45,13 @@ export function ProjectsSection() {
       featured: true,
     },
     {
-      title: "Archi-Tech",
+      title: "BitNest1",
       description:
         "An Agency website showcasing services, portfolio, and client testimonials with a clean and modern design. Built with Next.js and Tailwind CSS.",
       tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
-      image: "/Archi-tech.png?height=400&width=400",
-      github: "https://github.com",
-      demo: "https://example.com",
+      image: "/BitNest.png?height=400&width=400",
+      github: "https://github.com/luckys-lnz/BitNest",
+      demo: "https://bitnest.vercel.app/",
       featured: true,
     },
     {
