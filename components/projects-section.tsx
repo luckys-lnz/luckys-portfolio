@@ -168,7 +168,6 @@ export function ProjectsSection() {
                     />
                   </Link>
                 </div>
-
                 {/* Project Content Container */}
                 <div
                   className={`relative md:col-span-5 z-10 ${
@@ -190,14 +189,12 @@ export function ProjectsSection() {
                       {project.title}
                     </Link>
                   </h3>
-
                   {/* Description Box */}
                   <div className="bg-card md:bg-slate-100 md:dark:bg-slate-800 rounded-md shadow-md p-4 md:p-6 mb-4 transition-shadow hover:shadow-lg">
                     <p className="text-muted-foreground text-sm sm:text-base">
                       {project.description}
                     </p>
                   </div>
-
                   {/* Tags List */}
                   <ul
                     className={`flex flex-wrap gap-x-3 gap-y-1 text-xs sm:text-sm font-mono text-slate-600 dark:text-slate-400 mb-6 ${
@@ -208,7 +205,6 @@ export function ProjectsSection() {
                       <li key={tag}>{tag}</li>
                     ))}
                   </ul>
-
                   {/* Links */}
                   <div
                     className={`flex gap-3 ${
@@ -242,7 +238,6 @@ export function ProjectsSection() {
               </motion.div>
             ))}
           </div>
-
           {/* Other Projects Section Header */}
           <motion.h3
             variants={itemVariants}
@@ -250,24 +245,35 @@ export function ProjectsSection() {
           >
             Other Noteworthy Projects
           </motion.h3>
-
+          <motion.h4
+            variants={itemVariants}
+            className="text-sm text-center mb-12 md:mb-16"
+          >
+            <Link
+              href="www.github.com/luckys-lnz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-bold text-slate-800 dark:text-slate-100 hover:text-primary dark:hover:text-primary font-mono"
+            >
+              Browse My Github
+            </Link>
+          </motion.h4>
           {/* Other Projects Grid */}
           <motion.div
-            // Use container variants directly if staggering is desired here too
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"} // Re-trigger animation for this section
+            animate={isInView ? "visible" : "hidden"}
             variants={containerVariants}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           >
             {otherProjects.map((project) => (
               <motion.div key={project.title} variants={itemVariants}>
-                {/* Use a standard div or Link as the base for more control */}
+                {/* Project Card */}
                 <div className="h-full group relative">
                   <Link
                     href={project.demo || project.github || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute inset-0 z-10" // Make the whole card clickable (optional)
+                    className="absolute inset-0 z-10"
                     aria-label={`View project ${project.title}`}
                   />
                   <Card className="h-full bg-card dark:bg-slate-800/80 group hover:bg-slate-100/80 dark:hover:bg-slate-700/80 hover:-translate-y-2 transition-all duration-300 shadow-md hover:shadow-xl border border-transparent hover:border-primary/30 flex flex-col">
@@ -305,10 +311,8 @@ export function ProjectsSection() {
                           )}
                         </div>
                       </div>
-
                       {/* Card Title */}
                       <h3 className="text-lg sm:text-xl font-bold mb-2 text-slate-800 dark:text-slate-100 group-hover:text-primary transition-colors">
-                        {/* Title is not a link anymore if the whole card links */}
                         {project.title}
                       </h3>
 
@@ -316,7 +320,6 @@ export function ProjectsSection() {
                       <p className="text-muted-foreground text-sm mb-4 flex-grow">
                         {project.description}
                       </p>
-
                       {/* Card Footer: Tags */}
                       <div className="mt-auto">
                         <ul className="flex flex-wrap gap-x-3 gap-y-1 text-xs font-mono text-slate-600 dark:text-slate-400">
