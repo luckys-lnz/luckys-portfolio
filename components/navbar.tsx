@@ -118,7 +118,7 @@ export function Navbar() {
 
           {/* Resume button */}
           <motion.a
-            href="/resume.pdf"
+            href="/docs/LA.pdf"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{
@@ -179,7 +179,7 @@ export function Navbar() {
                 </Button>
               ))}
               <motion.a
-                href="/resume.pdf"
+                href="/docs/LA.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{
