@@ -14,7 +14,7 @@ export function HeroSection() {
         <div className="absolute bottom-0 right-1/4 w-1/4 h-1/4 bg-slate-400/20 dark:bg-slate-300/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="container relative z-10">
+      <div className="container max-w-screen-lg relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
