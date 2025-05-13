@@ -71,7 +71,7 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container md:max-w-screen-lg flex h-16 items-center justify-between">
         {/* Logo with hover animation */}
         <motion.div
           whileHover={{ scale: 1.05, rotate: -3 }}
