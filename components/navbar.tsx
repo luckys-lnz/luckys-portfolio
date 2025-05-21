@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -26,21 +27,32 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 10);
 
-      // Section highlight
       const sections = navLinks.map((link) =>
         document.querySelector(link.href)
       );
+
+      let currentSection = "";
+
       for (const section of sections) {
         if (section) {
           const top = section.getBoundingClientRect().top;
           if (top < window.innerHeight / 2) {
-            setActiveSection(`#${section.id}`);
+            currentSection = `#${section.id}`;
           }
         }
       }
+
+      if (scrollY < 100) {
+        setActiveSection("/");
+      } else if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -55,11 +67,11 @@ export function Navbar() {
         const offsetTop =
           element.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({
-          top: offsetTop - 80, 
+          top: offsetTop - 80,
           behavior: "smooth",
         });
       }
-    }, 300); 
+    }, 300);
   };
 
   return (
@@ -79,11 +91,12 @@ export function Navbar() {
         >
           <Link
             href="/"
-            className="text-xl font-bold tracking-tighter transition-colors hover:text-primary"
+            onClick={() => setActiveSection("/")}
+            className="flex items-centernp"
+            aria-label="Lucky Archibong"
+            title="Lucky Archibong"
           >
-            <span className="text-primary">{"<"}</span>
-            Lucky.Archibong
-            <span className="text-primary">{"/>"}</span>
+            <Image src="/logo.svg" alt="Logo" width={60} height={60} />
           </Link>
         </motion.div>
 
@@ -104,11 +117,16 @@ export function Navbar() {
               </span>
               <span>{link.label}</span>
 
-              {activeSection === link.href && (
+              {activeSection === link.href && link.href !== "/" && (
                 <motion.div
                   layoutId="underline"
                   className="absolute -bottom-1 left-0 h-[2px] w-full bg-primary"
-                  transition={{ type: "spring", stiffness: 500, damping: 30, duration: 0.3 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 30,
+                    duration: 0.3,
+                  }}
                 />
               )}
             </motion.button>
