@@ -11,7 +11,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://luckyarchibong.com"),
+  metadataBase: new URL("https://luckyarchi.tech"),
   title: {
     default: "Lucky Archibong | Full-Stack Software Engineer",
     template: "%s | Lucky Archibong",
@@ -29,14 +29,16 @@ export const metadata: Metadata = {
     "JavaScript Engineer",
     "Web Developer Portfolio",
     "Software Engineering Projects",
+    "lnz",
+    "luckys-lnz",
   ],
   category: "technology",
   applicationName: "Lucky Archibong Portfolio",
-  authors: [{ name: "Lucky Archibong", url: "https://luckyarchibong.com" }],
+  authors: [{ name: "Lucky Archibong", url: "https://luckyarchi.tech" }],
   creator: "Lucky Archibong",
   publisher: "Lucky Archibong",
   alternates: {
-    canonical: "https://luckyarchibong.com",
+    canonical: "https://luckyarchi.tech",
   },
   robots: {
     index: true,
@@ -60,13 +62,13 @@ export const metadata: Metadata = {
     title: "Lucky Archibong | Full-Stack Software Engineer",
     description:
       "Explore Lucky Archibong’s portfolio of full-stack web development projects using React, TypeScript, Next.js, and modern backend tools.",
-    url: "https://luckyarchibong.com",
+    url: "https://luckyarchi.tech",
     siteName: "Lucky Archibong",
     type: "website",
     locale: "en-US",
     images: [
       {
-        url: "https://luckyarchibong.com/images/og-image.png",
+        url: "https://luckyarchi.tech/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Lucky Archibong Portfolio Hero Section",
@@ -80,7 +82,7 @@ export const metadata: Metadata = {
     description:
       "Discover Lucky Archibong’s developer portfolio featuring scalable web apps built with React, TypeScript, and modern UI/UX design.",
     creator: "@luckys_lens",
-    images: ["https://luckyarchibong.com/images/og-image.png"],
+    images: ["https://luckyarchi.tech/images/og-image.png"],
   },
 };
 
