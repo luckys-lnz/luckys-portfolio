@@ -30,7 +30,7 @@ export function ProjectsSection() {
       tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
       image: "/pp.png",
       github: "https://github.com/luckys-lnz/luckys-portfolio",
-      demo: "https://www.luckyarchibong.com/",
+      demo: "https://luckyarchi.tech",
       featured: true,
     },
     {
