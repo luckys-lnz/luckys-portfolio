@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { Mona_Sans as FontSans } from "next/font/google";
@@ -13,22 +13,24 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://luckyarchi.tech"),
   title: {
-    default: "Lucky Archibong | Full-Stack Software Engineer",
+    default: "Lucky Archibong | Full-Stack Software Engineer & UI/UX Designer",
     template: "%s | Lucky Archibong",
   },
   description:
-    "Lucky Archibong is a results-driven full-stack software engineer building performant web applications with modern frameworks like Next.js, React, and TypeScript. Explore high-impact frontend UIs, scalable backend systems, and elegant design implementations.",
+    "Full-stack software engineer and UI/UX designer specializing in modern web applications. Explore my portfolio showcasing projects built with Next.js, React, and TypeScript.",
   keywords: [
     "Lucky Archibong",
     "Full-Stack Software Engineer",
+    "UI/UX Designer",
     "React Developer",
-    "Next.js Portfolio",
+    "Next.js Developer",
     "TypeScript Developer",
-    "Frontend Engineer",
+    "Frontend Developer",
     "Backend Developer",
-    "JavaScript Engineer",
-    "Web Developer Portfolio",
-    "Software Engineering Projects",
+    "Web Developer",
+    "Portfolio",
+    "Web Applications",
+    "Software Development",
     "lnz",
     "luckys-lnz",
   ],
@@ -58,29 +60,30 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
     shortcut: "/favicon.ico",
   },
-  openGraph: {
-    title: "Lucky Archibong | Full-Stack Software Engineer",
-    description:
-      "Explore Lucky Archibong’s portfolio of full-stack web development projects using React, TypeScript, Next.js, and modern backend tools.",
-    url: "https://luckyarchi.tech",
-    siteName: "Lucky Archibong",
-    type: "website",
-    locale: "en-US",
-    images: [
-      {
-        url: "https://luckyarchi.tech/images/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Lucky Archibong Portfolio Hero Section",
-        type: "image/png",
-      },
-    ],
-  },
+openGraph: {
+  title: "Lucky Archibong | Expert Full-Stack Software Engineer & UI/UX Designer",
+  description:
+    "Discover Lucky <Archibong></Archibong>’s innovative portfolio showcasing full-stack web development projects built with React, TypeScript, Next.js, and modern web technologies.",
+  url: "https://luckyarchi.tech",
+  siteName: "Lucky Archibong Portfolio",
+  type: "website",
+  locale: "en-US",
+  images: [
+    {
+      url: "https://luckyarchi.tech/images/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Lucky Archibong’s portfolio showcasing full-stack development and UI/UX design",
+      type: "image/png",
+    },
+  ],
+},
+
   twitter: {
     card: "summary_large_image",
-    title: "Lucky Archibong | Full-Stack Software Engineer",
+    title: "Lucky Archibong | Full-Stack Software Engineer & UI/UX Designer",
     description:
-      "Discover Lucky Archibong’s developer portfolio featuring scalable web apps built with React, TypeScript, and modern UI/UX design.",
+      "Developer portfolio featuring web apps and UI/UX designs built with React, TypeScript, and Next.js. By Lucky Archibong.",
     creator: "@luckys_lens",
     images: ["https://luckyarchi.tech/images/og-image.png"],
   },
