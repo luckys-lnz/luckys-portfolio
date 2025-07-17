@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | Lucky Archibong",
   },
   description:
-    "Full-stack software engineer and UI/UX designer specializing in modern web applications. Explore my portfolio showcasing projects built with Next.js, React, and TypeScript.",
+    "Full-stack software engineer specializing in mobile and web applications.",
   keywords: [
     "Lucky Archibong",
     "Full-Stack Software Engineer",
