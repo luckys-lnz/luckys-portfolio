@@ -77,13 +77,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-md",
+        "fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-md overflow-visible",
         isScrolled
           ? "bg-background/80 border-b border-slate-200/50 dark:border-slate-800/50 shadow-sm"
           : "bg-transparent"
       )}
     >
-      <div className="container md:max-w-screen-lg flex h-16 items-center justify-between">
+      <div className="container md:max-w-screen-lg flex h-16 items-center justify-between relative">
         {/* Logo with hover animation */}
         <motion.div
           whileHover={{ scale: 1.05, rotate: -3 }}
@@ -132,8 +132,14 @@ export function Navbar() {
             </motion.button>
           ))}
 
-          <ThemeToggle />
-
+          {/* Theme Toggle */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <ThemeToggle />
+          </motion.div>
+          
           {/* Resume button */}
           <motion.a
             href="/docs/LA.pdf"
