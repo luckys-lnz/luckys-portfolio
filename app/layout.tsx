@@ -13,7 +13,7 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://luckyarchi.tech"),
   title: {
-    default: "Lucky Archibong | Full-Stack Software Engineer & UI/UX Designer",
+    default: "Lucky Archibong | Full-Stack Software Engineer",
     template: "%s | Lucky Archibong",
   },
   description:
