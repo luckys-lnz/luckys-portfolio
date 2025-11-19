@@ -26,31 +26,11 @@ export function ProjectsSection() {
     {
       title: "Developer Portfolio",
       description:
-        "A modern portfolio website for developers with dark mode support, animations, and responsive design. Built with Next.js and Tailwind CSS.",
+        "Book & Pay GH is a SaaS platform that helps local service-based businesses in Ghana manage bookings, payments all in one simple web app.",
       tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-      image: "/pp.png",
-      github: "https://github.com/luckys-lnz/luckys-portfolio",
-      demo: "https://luckyarchi.tech",
-      featured: true,
-    },
-    {
-      title: "Exchange app Dashboard",
-      description:
-        "A web application that provides real-time fiat exchange rates and historical data visualization. Built with React, TypeScript, Node.js, and MongoDB with dark mode support.",
-      tags: ["React", "TypeScript", "Node.js", "MongoDB", "Chart.js"],
-      image: "/exchange-app.png",
-      github: "https://github.com/luckys-lnz/exchange-app",
-      demo: "https://exchange-app-2ovz.onrender.com/",
-      featured: true,
-    },
-    {
-      title: "BitNest",
-      description:
-        "An Agency website showcasing services, portfolio, and client testimonials with a clean and modern design. Built with Next.js and Tailwind CSS.",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
-      image: "/BitNest.png",
-      github: "https://github.com/luckys-lnz/BitNest",
-      demo: "https://bitnest.vercel.app/",
+      image: "/bookandpay.png",
+      github: "https://github.com/luckys-lnz/book-and-payGH",
+      demo: "https://bookandpaygh.com",
       featured: true,
     },
     {
@@ -65,10 +45,30 @@ export function ProjectsSection() {
         "DnD Kit",
         "Clerk auth",
       ],
-      image: "/placeholder.svg",
-      demo: "https://www.task-master.com",
+      image: "/taskmaster.png",
+      demo: "https://task-master-quick.vercel.app/",
       github: "https://github.com/luckys-lnz/task-master",
-      featured: false,
+      featured: true,
+    },
+    {
+      title: "BitNest",
+      description:
+        "An Agency website showcasing services, portfolio, and client testimonials with a clean and modern design. Built with Next.js and Tailwind CSS.",
+      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
+      image: "/Bitnest.png",
+      github: "https://github.com/luckys-lnz/BitNest",
+      demo: "https://bitnest.vercel.app/",
+      featured: true,
+    },
+    {
+      title: "Krystal12",
+      description:
+        "A concept design for an oil and gas company website, The site contains static Data and not fully implemented.",
+      tags: ["React", "TypeScript", "Node.js", "MongoDB", "Chart.js"],
+      image: "/k12.png",
+      github: "https://github.com/luckys-lnz/krystal",
+      demo: "https://krystal-phi.vercel.app/",
+      featured: true,
     },
     {
       title: "Web Scraper",
@@ -80,12 +80,39 @@ export function ProjectsSection() {
       featured: false,
     },
     {
+      title: "LuDa_chat_app_v1",
+      description:
+        "LuDa chat application is a real-time chat application where users can join different rooms and exchange messages. This project will enhance understanding of WebSocket communication.",
+      tags: ["JS", "Postgresql", "Redis", "CSS", "Node.js", "WebSocket"],
+      image: "/placeholder.svg",
+      github: "https://github.com/luckys-lnz/web-scraper/tree/main/web-scraper",
+      featured: false,
+    },
+    {
+      title: "SavePals",
+      description:
+        "SavePals is a collaborative savings platform that allows friends to save money together by setting group goals, tracking progress, and managing contributions. Built with Flask, the application provhrefes a streamlined and user-friendly interface for managing group savings plans, making financial collaboration easier and more transparent.",
+      tags: ["Python", "JS", "Postgresql", "Redis", "Flask", "CSS"],
+      image: "/placeholder.svg",
+      github: "https://github.com/luckys-lnz/SavePals",
+      featured: false,
+    },
+    {
       title: "Airbnb Clone",
       description:
         "Full-stack Airbnb clone with user auth, listings, and booking using Python, Flask, MySQL, and JS.",
       tags: ["Python", "Flask", "MySQL", "RestAPI", "JS", "SCSS"],
       image: "/airbnb-clone.png",
       github: "https://github.com/luckys-lnz/AirBnB_clone_v4",
+      featured: false,
+    },
+    {
+      title: "NVIM Config",
+      description:
+        "A highly customized Neovim configuration focused on performance and usability, featuring LSP, autocompletion, and Git integration.",
+      tags: ["Lua", "Neovim", "LSP", "Treesitter", "Git"],
+      image: "/placeholder.svg",
+      github: "https://github.com/luckys-lnz/nvim",
       featured: false,
     },
   ];
