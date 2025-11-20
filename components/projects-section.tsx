@@ -24,7 +24,7 @@ export function ProjectsSection() {
   // Project Data
   const projects: Project[] = [
     {
-      title: "Developer Portfolio",
+      title: "Book & Pay GH",
       description:
         "Book & Pay GH is a SaaS platform that helps local service-based businesses in Ghana manage bookings, payments all in one simple web app.",
       tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
