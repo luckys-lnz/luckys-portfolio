@@ -85,13 +85,13 @@ export function ProjectsSection() {
         "LuDa chat application is a real-time chat application where users can join different rooms and exchange messages. This project will enhance understanding of WebSocket communication.",
       tags: ["JS", "Postgresql", "Redis", "CSS", "Node.js", "WebSocket"],
       image: "/placeholder.svg",
-      github: "https://github.com/luckys-lnz/web-scraper/tree/main/web-scraper",
+      github: "https://github.com/luckys-lnz/LuDa_chat_app_v1",
       featured: false,
     },
     {
       title: "SavePals",
       description:
-        "SavePals is a collaborative savings platform that allows friends to save money together by setting group goals, tracking progress, and managing contributions. Built with Flask, the application provhrefes a streamlined and user-friendly interface for managing group savings plans, making financial collaboration easier and more transparent.",
+        "SavePals is a collaborative savings platform that allows friends to save money together by setting group goals, tracking progress, and managing contributions. Built with Flask, the application provides a streamlined and user-friendly interface for managing group savings plans, making financial collaboration easier and more transparent.",
       tags: ["Python", "JS", "Postgresql", "Redis", "Flask", "CSS"],
       image: "/placeholder.svg",
       github: "https://github.com/luckys-lnz/SavePals",
@@ -102,7 +102,7 @@ export function ProjectsSection() {
       description:
         "Full-stack Airbnb clone with user auth, listings, and booking using Python, Flask, MySQL, and JS.",
       tags: ["Python", "Flask", "MySQL", "RestAPI", "JS", "SCSS"],
-      image: "/airbnb-clone.png",
+      image: "/placeholder.svg",
       github: "https://github.com/luckys-lnz/AirBnB_clone_v4",
       featured: false,
     },
@@ -277,7 +277,7 @@ export function ProjectsSection() {
             className="text-sm text-center mb-12 md:mb-16"
           >
             <Link
-              href="www.github.com/luckys-lnz"
+              href="https://github.com/luckys-lnz"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary font-bold text-slate-800 dark:text-slate-100 hover:text-primary dark:hover:text-primary font-mono"
