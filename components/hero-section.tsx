@@ -8,7 +8,7 @@ import Link from "next/link";
 export function HeroSection() {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Background gradient */}
+      {/* Background gradients */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/3 w-1/3 h-1/3 bg-primary/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-1/4 w-1/4 h-1/4 bg-slate-400/20 dark:bg-slate-300/10 rounded-full blur-[100px]" />
@@ -21,41 +21,47 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-start gap-4 max-w-3xl"
         >
+          {/* Intro */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-primary font-mono text-sm md:text-base"
           >
-            Hi, my name is
+            Hi, I’m
           </motion.p>
+
+          {/* Name - dominant */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            className="text-6xl md:text-7xl font-extrabold tracking-tight"
           >
             Lucky Archibong
           </motion.h1>
+
+          {/* Value statement - supporting */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeInOut" }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-muted-foreground"
+            className="text-2xl md:text-3xl font-semibold text-muted-foreground mt-2"
           >
-            I build <span className="text-primary">apps</span> for the Internet.
+            I build <span className="text-primary">scalable web applications</span> that solve real problems.
           </motion.h2>
+
+          {/* Technical about me */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-muted-foreground text-base md:text-lg max-w-xl mt-4"
           >
-            I'm a Software Engineer specializing in building{" "}
-            <span className="text-primary">web applications</span> and custom
-            software solutions.
+            Software Engineer specializing in full-stack development, clean architecture, and user-focused digital products. I turn ideas into reliable, maintainable software that scales.
           </motion.p>
 
+          {/* CTA buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,10 +76,7 @@ export function HeroSection() {
                 if (element) {
                   const offsetTop =
                     element.getBoundingClientRect().top + window.pageYOffset;
-                  window.scrollTo({
-                    top: offsetTop - 80,
-                    behavior: "smooth",
-                  });
+                  window.scrollTo({ top: offsetTop - 80, behavior: "smooth" });
                 }
               }}
             >
@@ -88,10 +91,7 @@ export function HeroSection() {
                 if (element) {
                   const offsetTop =
                     element.getBoundingClientRect().top + window.pageYOffset;
-                  window.scrollTo({
-                    top: offsetTop - 80,
-                    behavior: "smooth",
-                  });
+                  window.scrollTo({ top: offsetTop - 80, behavior: "smooth" });
                 }
               }}
             >
@@ -99,6 +99,7 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
+          {/* Social links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

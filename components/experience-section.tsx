@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -23,60 +22,57 @@ export function ExperienceSection() {
     {
       title: "Software Engineer",
       company: "Freelance",
-      date: "January 2024 - Present",
+      date: "Jan 2024 — Present",
       location: "Remote",
       description: [
-        "Designed and developed multiple responsive web applications using React.js and Next.js, leveraging server-side rendering and static site generation for improved performance and SEO.",
-        "Implemented complex UI components with Tailwind CSS, ensuring consistent design and mobile-first responsiveness across devices.",
-        "Built dynamic client websites on CMS platforms like Webflow and WordPress, customising themes and integrating third-party APIs to meet client-specific requirements.",
-        "Integrated RESTful APIs and third-party services to enhance application functionality, such as payment gateways, authentication, and analytics.",
+        "Designed and shipped production-ready web applications using React and Next.js, leveraging SSR and SSG for performance and SEO.",
+        "Built complex, reusable UI components with Tailwind CSS, ensuring accessibility and mobile-first responsiveness.",
+        "Integrated REST APIs and third-party services including authentication, payments, and analytics.",
+        "Delivered custom CMS-based solutions using Webflow and WordPress, tailored to client business needs.",
       ],
       url: "https://www.luckyarchibong.com",
     },
     {
       title: "Software Engineering Trainee",
-      company: "ALX-SE Training Program",
-      date: "January 2024 - Febuary 2025",
+      company: "ALX Africa",
+      date: "Jan 2024 — Feb 2025",
       location: "Remote",
       description: [
-        "Set up and maintained Ubuntu web servers, learning how to keep systems reliable and responsive for users.",
-        "Implemented HAProxy as a load balancer to help distribute incoming traffic and reduce server overload.",
-        "Gained experience with Puppet to automate routine server tasks, improving efficiency and consistency in deployment.",
-        "Used Datadog to monitor server health and performance, catching issues early and learning to debug in real time.",
-        "Built a full-stack Airbnb clone using Python, Flask, jQuery, and SQLAlchemy, focusing on backend development and how databases connect to user-facing features.",
-        "Designed and managed MySQL databases to handle user accounts and property listings, practicing data modeling and relational queries.",
-        "Worked closely with peers using GitHub for version control, team collaboration, and code reviews, developing habits for clean, maintainable code.",
+        "Configured and maintained Linux-based web servers, focusing on reliability and performance.",
+        "Implemented HAProxy for load balancing and traffic distribution.",
+        "Automated infrastructure tasks using Puppet, improving deployment consistency.",
+        "Monitored systems with Datadog and debugged production issues in real time.",
+        "Built a full-stack Airbnb clone using Python, Flask, SQLAlchemy, and MySQL.",
+        "Collaborated in distributed teams using GitHub, following code review and version control best practices.",
       ],
-      url: "https://www.alxafrica.com/ ",
+      url: "https://www.alxafrica.com",
     },
     {
       title: "Web Developer",
       company: "TheDevBuild",
-      date: "January 2023 - February 2024",
+      date: "Jan 2023 — Feb 2024",
       location: "Remote",
       description: [
-        "Built and maintained client websites using HTML, CSS, and JavaScript",
-        "Implemented responsive designs that work across all device sizes",
-        "Assisted in the development of a company-wide design system",
-        "Participated in agile development processes and sprint planning",
+        "Built and maintained client websites using modern HTML, CSS, and JavaScript.",
+        "Implemented responsive layouts across mobile, tablet, and desktop.",
+        "Contributed to the development of a shared internal design system.",
+        "Worked within agile workflows, participating in sprint planning and reviews.",
       ],
       url: "https://www.thedevbuild.com",
     },
     {
       title: "Web Developer",
       company: "Motito",
-      date: "August 2021 - March 2022",
+      date: "Aug 2021 — Mar 2022",
       location: "Remote",
       description: [
-        "Developed responsive web applications using HTML/CSS and JavaScript",
-        "Implemented CI/CD pipelines that reduced deployment time by 40%",
-        "Optimized the company web application performance, improving load times by 45%",
-        "Collaborated with cross-functional teams to deliver features on schedule",
-        "Built an internal dashboard using JavaScript and SQL, integrating BigQuery data with Retool to visualise and manage user demographic insights.",
-        "Worked closely with clients to gather requirements, offer technical guidance, and deliver tailored digital solutions that align with business goals.",
-        "Ensured cross-browser compatibility, mobile responsiveness, and SEO best practices in our websites.",
+        "Developed responsive web applications with a focus on performance and usability.",
+        "Implemented CI/CD pipelines, reducing deployment time by ~40%.",
+        "Optimized application performance, improving load times by ~45%.",
+        "Built an internal analytics dashboard integrating SQL, BigQuery, and Retool.",
+        "Collaborated cross-functionally to deliver features aligned with business goals.",
       ],
-      url: "https://motito.co/",
+      url: "https://motito.co",
     },
   ];
 
@@ -84,52 +80,52 @@ export function ExperienceSection() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.12 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.45, ease: "easeOut" },
     },
   };
 
   return (
-    <section id="experience" className="py-20 md:py-32 relative">
-      <div className="container max-w-4xl">
+    <section id="experience" className="py-24 md:py-32 relative">
+      <div className="container max-w-4xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
+          {/* Section header */}
           <motion.h2
             variants={itemVariants}
-            className="text-3xl font-bold flex items-center gap-4 mb-12"
+            className="text-3xl font-bold flex items-center gap-4 mb-14"
           >
             <span className="text-primary font-mono text-xl">02.</span>
-            Where I've Worked
-            <div className="h-px bg-border flex-grow ml-4 opacity-50"></div>
+            Experience
+            <div className="h-px bg-border flex-grow opacity-50" />
           </motion.h2>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col md:flex-row gap-4"
+            className="flex flex-col md:flex-row gap-6"
           >
-            <div className="md:border-l border-border md:w-64 flex md:flex-col overflow-x-auto md:overflow-x-visible scrollbar-hide">
+            {/* Company tabs */}
+            <div className="md:w-64 md:border-l border-border flex md:flex-col overflow-x-auto md:overflow-visible scrollbar-hide">
               {experiences.map((exp, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveTab(index)}
                   className={cn(
-                    "px-4 py-3 text-left font-mono text-sm whitespace-nowrap transition-all",
+                    "px-4 py-3 text-left font-mono text-sm whitespace-nowrap transition-colors duration-200",
                     activeTab === index
-                      ? "text-primary border-primary md:border-l-2 md:-ml-[2px] bg-primary/5"
+                      ? "text-primary bg-primary/5 md:border-l-2 md:border-primary md:-ml-[2px]"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
@@ -138,32 +134,37 @@ export function ExperienceSection() {
               ))}
             </div>
 
-            <div className="flex-1 min-h-[320px]">
+            {/* Experience content */}
+            <div className="flex-1 min-h-[340px]">
               {experiences.map((exp, index) => (
                 <div
                   key={index}
                   className={cn(
-                    "space-y-4 transition-all duration-300",
-                    activeTab === index ? "opacity-100" : "hidden opacity-0"
+                    "space-y-5",
+                    activeTab === index ? "block" : "hidden"
                   )}
                 >
-                  <h3 className="text-xl font-medium">
-                    {exp.title} @ {""}
-                    <a
-                      href={exp.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
-                    >
-                      {exp.company}
-                    </a>
-                  </h3>
-                  <p className="text-sm text-muted-foreground font-mono">
-                    {exp.date} | {exp.location}
-                  </p>
-                  <ul className="space-y-2">
+                  <div>
+                    <h3 className="text-xl font-semibold">
+                      {exp.title}{" "}
+                      <span className="text-muted-foreground">@</span>{" "}
+                      <a
+                        href={exp.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                      >
+                        {exp.company}
+                      </a>
+                    </h3>
+                    <p className="mt-1 text-sm font-mono text-muted-foreground">
+                      {exp.date} · {exp.location}
+                    </p>
+                  </div>
+
+                  <ul className="space-y-3">
                     {exp.description.map((item, i) => (
-                      <li key={i} className="flex gap-2 text-muted-foreground">
+                      <li key={i} className="flex gap-3 text-muted-foreground">
                         <span className="text-primary flex-shrink-0">▹</span>
                         <span>{item}</span>
                       </li>
