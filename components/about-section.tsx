@@ -10,16 +10,18 @@ export function AboutSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const skills = [
-    "Python",
-    "C",
     "TypeScript",
-    "JavaScript (ES6+)",
+    "JavaScript",
+    "Python",
     "React",
+    "Next.js",
     "Node.js",
-    "Angular",
+    "Express",
     "MongoDB",
     "PostgreSQL",
-    "GraphQL",
+    "Tailwind CSS",
+    "Git",
+    "Docker"
   ];
 
   const containerVariants = {
@@ -78,7 +80,7 @@ export function AboutSection() {
                 performs in real-world use.
               </p>
               <p>
-                Theses are some of the technologies I have been working with
+                These are some of the technologies I have been working with
                 recently:
               </p>
             </div>
@@ -102,7 +104,7 @@ export function AboutSection() {
             <div className="relative rounded-lg overflow-hidden border-2 border-slate-200 dark:border-slate-800 transition-all duration-300 group-hover:border-primary/50">
               <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-all duration-300 z-10"></div>
               <Image
-                src="/lucky.A.jpg?height=200&width=400"
+                src="/lucky.A.jpg"
                 alt="Lucky Archibong"
                 width={600}
                 height={600}
