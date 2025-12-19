@@ -60,24 +60,22 @@ export function AboutSection() {
 
             <div className="space-y-4 text-muted-foreground">
               <p>
-                My journey into software engineering was not linear, but it is one
-                I am proud of. I studied Computer Science in school, and while I
-                did particularly well in C programming, I initially had
-                different plans; I was drawn to the world of trade and
-                entrepreneurship.
+                I’m a software engineer focused on building reliable, scalable
+                systems. I spend most of my time designing clean architectures,
+                writing maintainable code, and turning ambiguous problems into
+                production-ready solutions.
               </p>
               <p>
-                Then the world hit pause during the COVID-19 pandemic. With time
-                on my hands and the world on lockdown, I found myself revisiting
-                programming; just to stay sharp and curious. That casual
-                exploration slowly reignited a spark.
+                I care deeply about correctness, simplicity, and long-term
+                maintainability. I make deliberate trade-offs, document
+                decisions, and optimize for systems that are easy to evolve
+                rather than quick to hack together.
               </p>
               <p>
-                Over the next few years, I bounced between interests, but coding
-                kept pulling me back. In 2023, I made the decision to fully
-                commit to software engineering, and I haven't looked back since.
-                Today, I am passionate about building clean, accessible, and
-                user-focused digital products that blend creativity with logic.
+                My work spans backend systems, APIs, and product-facing
+                features. I enjoy owning problems end-to-end, from system design
+                to deployment, and I judge success by how well the software
+                performs in real-world use.
               </p>
               <p>
                 Theses are some of the technologies I have been working with
