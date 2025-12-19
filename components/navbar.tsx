@@ -92,7 +92,7 @@ export function Navbar() {
           <Link
             href="/"
             onClick={() => setActiveSection("/")}
-            className="flex items-centernp"
+            className="flex items-center"
             aria-label="Lucky Archibong"
             title="Lucky Archibong"
           >
