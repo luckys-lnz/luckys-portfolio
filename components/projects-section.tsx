@@ -51,16 +51,6 @@ export function ProjectsSection() {
       featured: true,
     },
     {
-      title: "BitNest",
-      description:
-        "An Agency website showcasing services, portfolio, and client testimonials with a clean and modern design. Built with Next.js and Tailwind CSS.",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
-      image: "/Bitnest.png",
-      github: "https://github.com/luckys-lnz/BitNest",
-      demo: "https://bitnest.vercel.app/",
-      featured: true,
-    },
-    {
       title: "Krystal12",
       description:
         "A concept design for an oil and gas company website, The site contains static Data and not fully implemented.",
