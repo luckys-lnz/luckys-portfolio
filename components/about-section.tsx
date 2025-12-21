@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
 
 export function AboutSection() {
@@ -11,100 +10,91 @@ export function AboutSection() {
 
   const skills = [
     "TypeScript",
-    "JavaScript (ES6+)",
-    "Python",
     "React",
     "Next.js",
     "Node.js",
-    "Express",
-    "MongoDB",
+    "Python",
     "PostgreSQL",
-    "Tailwind CSS",
-    "Git",
     "Docker",
+    "Tailwind CSS",
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
-    <section id="about" className="py-24 md:py-32 relative">
-      <div className="container max-w-screen-lg mx-auto relative z-10">
+    <section id="about" className="py-24 md:py-32">
+      <div className="container max-w-5xl mx-auto">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="grid md:grid-cols-5 gap-12 items-start"
+          className="grid md:grid-cols-12 gap-12 items-center"
         >
-          {/* Text content */}
-          <motion.div variants={itemVariants} className="md:col-span-3 space-y-6">
-            {/* Section heading */}
+          {/* Text Content */}
+          <motion.div
+            variants={itemVariants}
+            className="md:col-span-7 space-y-6"
+          >
             <h2 className="text-3xl font-bold flex items-center gap-4">
               <span className="text-primary font-mono text-xl">01.</span>
               About Me
-              <div className="flex-grow h-px bg-border opacity-50"></div>
+              <div className="h-px bg-border flex-grow opacity-50"></div>
             </h2>
 
-            {/* About paragraphs */}
-            <div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed">
+            <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
               <p>
-                I’m a software engineer focused on building reliable, scalable systems. I
-                design clean architectures, write maintainable code, and turn ambiguous
-                problems into production-ready solutions.
+                I am a software engineer focused on{" "}
+                <span className="text-foreground font-medium border-b-2 border-primary/30">
+                  Solving real-world problems
+                </span>
+                . I specialize in clean architecture and turning complex
+                technical challenges into production-ready solutions.
               </p>
-              <p>
-                I care about correctness, simplicity, and long-term maintainability. I
-                make deliberate trade-offs, document decisions, and optimize for systems
-                that are easy to evolve, not quick hacks.
-              </p>
-              <p>
-                My work spans backend systems, APIs, and user-facing features. I enjoy
-                owning problems end-to-end—from system design to deployment—and measure
-                success by real-world performance.
-              </p>
-              <p>Technologies I work with regularly include:</p>
+              <p>Current stack focus:</p>
             </div>
 
-            {/* Skills grid */}
-            <motion.ul
-              variants={itemVariants}
-              className="grid grid-cols-2 gap-x-6 gap-y-3 mt-4 text-sm md:text-base"
-            >
+            <ul className="grid grid-cols-2 gap-2 text-sm font-mono">
               {skills.map((skill, idx) => (
-                <li key={idx} className="flex items-center gap-2">
-                  <span className="text-primary font-bold">▹</span> {skill}
+                <li key={idx} className="flex items-center gap-2 group">
+                  <span className="text-primary group-hover:translate-x-1 transition-transform">
+                    ▹
+                  </span>
+                  {skill}
                 </li>
               ))}
-            </motion.ul>
+            </ul>
           </motion.div>
 
-          {/* Image content */}
+          {/* Image Content */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-2 relative flex justify-center md:justify-end"
+            className="md:col-span-5 flex justify-center"
           >
-            <div className="relative rounded-lg overflow-hidden border-2 border-slate-200 dark:border-slate-800 transition-all duration-300 group hover:border-primary/50">
-              <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-all duration-300 z-10"></div>
-              <Image
-                src="/lucky.A.jpg"
-                alt="Lucky Archibong"
-                width={600}
-                height={600}
-                className="rounded-lg transition-transform duration-300 group-hover:scale-105"
-              />
+            <div className="relative group w-full max-w-[320px]">
+              {/* Outer Decorative Border */}
+              <div className="absolute -inset-3 border border-primary/20 rounded-xl -z-10 group-hover:inset-0 transition-all duration-500" />
+
+              {/* Image Container with Accent Tint */}
+              <div className="relative rounded-lg overflow-hidden aspect-square bg-primary shadow-2xl">
+                <Image
+                  src="/lucky.A.jpg"
+                  alt="Lucky Archibong"
+                  fill
+                  className="object-cover transition-all duration-500 mix-blend-multiply opacity-90 group-hover:mix-blend-normal group-hover:opacity-100 group-hover:scale-110"
+                />
+                {/* Subtle Overlay to ensure color matching */}
+                <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
+              </div>
             </div>
-            <div className="absolute -inset-1.5 rounded-lg bg-primary/10 -z-10 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.div>
         </motion.div>
       </div>
