@@ -20,15 +20,46 @@ export function ExperienceSection() {
   const tabsRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hasAutoScrolled, setHasAutoScrolled] = useState(false);
+  const [scrollPositionIndex, setScrollPositionIndex] = useState(0);
 
   // Check scroll position and update progress
   useEffect(() => {
     const checkScroll = () => {
       if (!tabsRef.current) return;
-      const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
+      const tabsElement = tabsRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } = tabsElement;
       const maxScroll = scrollWidth - clientWidth;
       const progress = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
       setScrollProgress(progress);
+
+      // Calculate which dot should be highlighted based on scroll position
+      if (maxScroll > 0) {
+        // Get all button elements
+        const buttons = tabsElement.querySelectorAll("button");
+        if (buttons.length > 1) {
+          // Find which button is closest to the center of the viewport
+          const viewportCenter = scrollLeft + clientWidth / 2;
+          let closestIndex = 0;
+          let minDistance = Infinity;
+
+          buttons.forEach((button, index) => {
+            const buttonLeft = button.offsetLeft;
+            const buttonCenter = buttonLeft + button.offsetWidth / 2;
+            const distance = Math.abs(viewportCenter - buttonCenter);
+
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestIndex = index;
+            }
+          });
+
+          setScrollPositionIndex(closestIndex);
+        } else {
+          setScrollPositionIndex(0);
+        }
+      } else {
+        setScrollPositionIndex(0);
+      }
     };
 
     const tabsElement = tabsRef.current;
@@ -225,23 +256,56 @@ export function ExperienceSection() {
                 </div>
                 {/* Scroll dots indicator */}
                 <div className="flex items-center justify-center gap-1.5 mt-2">
-                  {experiences.map((_, index) => (
-                    <motion.div
-                      key={index}
-                      className={cn(
-                        "h-1.5 rounded-full transition-all duration-300",
-                        index === activeTab
-                          ? "w-6 bg-primary"
-                          : "w-1.5 bg-border/40"
-                      )}
-                      initial={{ scale: 0.8, opacity: 0.5 }}
-                      animate={{
-                        scale: index === activeTab ? 1.2 : 1,
-                        opacity: index === activeTab ? 1 : 0.4,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  ))}
+                  {experiences.map((_, index) => {
+                    // Determine if this dot should be highlighted
+                    const isActiveTab = index === activeTab;
+                    const isScrollPosition = index === scrollPositionIndex;
+                    const isBoth = isActiveTab && isScrollPosition;
+                    const shouldHighlight = isActiveTab || isScrollPosition;
+                    
+                    // Calculate size based on scroll progress and active state
+                    const baseSize = 1.5; // 6px (w-1.5)
+                    const maxSize = 8; // 32px (w-8)
+                    const progressFactor = scrollProgress / 100;
+                    
+                    // Size calculation: active tab or scroll position gets larger size
+                    let dotWidth = baseSize;
+                    let dotScale = 1;
+                    
+                    if (isBoth) {
+                      // When both active tab and scroll position match, make it largest
+                      dotWidth = maxSize;
+                      dotScale = 1.4;
+                    } else if (isActiveTab) {
+                      // Active tab always gets large size
+                      dotWidth = maxSize;
+                      dotScale = 1.3;
+                    } else if (isScrollPosition) {
+                      // Scroll position dot grows based on scroll progress
+                      // The further you scroll, the larger it gets
+                      dotWidth = baseSize + (maxSize - baseSize) * progressFactor;
+                      dotScale = 1 + (0.3 * progressFactor);
+                    }
+
+                    return (
+                      <motion.div
+                        key={index}
+                        className={cn(
+                          "h-1.5 rounded-full transition-all duration-300",
+                          shouldHighlight ? "bg-primary" : "bg-border/40"
+                        )}
+                        style={{
+                          width: `${dotWidth * 4}px`, // Convert to px (1 = 4px in Tailwind)
+                        }}
+                        initial={{ scale: 0.8, opacity: 0.5 }}
+                        animate={{
+                          scale: dotScale,
+                          opacity: shouldHighlight ? 1 : 0.4,
+                        }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
