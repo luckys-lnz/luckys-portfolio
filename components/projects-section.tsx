@@ -79,21 +79,21 @@ export function ProjectsSection() {
       featured: false,
     },
     {
-      title: "SavePals",
-      description:
-        "SavePals is a collaborative savings platform that allows friends to save money together by setting group goals, tracking progress, and managing contributions. Built with Flask, the application provides a streamlined and user-friendly interface for managing group savings plans, making financial collaboration easier and more transparent.",
-      tags: ["Python", "JS", "Postgresql", "Redis", "Flask", "CSS"],
-      image: "/placeholder.svg",
-      github: "https://github.com/luckys-lnz/SavePals",
-      featured: false,
-    },
-    {
       title: "Airbnb Clone",
       description:
         "Full-stack Airbnb clone with user auth, listings, and booking using Python, Flask, MySQL, and JS.",
       tags: ["Python", "Flask", "MySQL", "RestAPI", "JS", "SCSS"],
       image: "/placeholder.svg",
       github: "https://github.com/luckys-lnz/AirBnB_clone_v4",
+      featured: false,
+    },
+    {
+      title: "SavePals",
+      description:
+        "SavePals is a collaborative savings platform that allows friends to save money together by setting group goals, tracking progress, and managing contributions.",
+      tags: ["Python", "JS", "Postgresql", "Redis", "Flask", "CSS"],
+      image: "/placeholder.svg",
+      github: "https://github.com/luckys-lnz/SavePals",
       featured: false,
     },
     {
@@ -172,17 +172,19 @@ export function ProjectsSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.title} live demo or repository`}
-                    className="block rounded-md overflow-hidden shadow-lg "
+                    className="block rounded-md overflow-hidden shadow-lg"
                   >
-                    {/* Image Overlay */}
-                    <div className="absolute inset-0 bg-primary/30 dark:bg-primary/40 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
-                    <Image
-                      src={project.image}
-                      alt={`Screenshot of ${project.title}`}
-                      width={600}
-                      height={375}
-                      className="w-full h-auto object-cover transition-all duration-300 group-hover:scale-105 grayscale-0 hover:grayscale-0 md:grayscale group-hover:grayscale-0" // Added grayscale effect like Brittany's
-                    />
+                    {/* Image Container with Accent Tint */}
+                    <div className="relative rounded-md overflow-hidden aspect-[16/10] bg-primary">
+                      <Image
+                        src={project.image}
+                        alt={`Screenshot of ${project.title}`}
+                        fill
+                        className="object-cover transition-all duration-500 mix-blend-multiply opacity-90 group-hover:mix-blend-normal group-hover:opacity-100 group-hover:scale-110"
+                      />
+                      {/* Subtle Overlay to ensure color matching */}
+                      <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
+                    </div>
                   </Link>
                 </div>
                 {/* Project Content Container */}
