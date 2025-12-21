@@ -58,7 +58,7 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-muted-foreground text-base md:text-lg max-w-xl mt-4"
           >
-            Software Engineer specializing in full-stack development, clean architecture, and user-focused digital products. I turn ideas into reliable, maintainable software that scales.
+            I am a Software Engineer specializing in full-stack development, clean architecture, and user-focused digital products.
           </motion.p>
 
           {/* CTA buttons */}
