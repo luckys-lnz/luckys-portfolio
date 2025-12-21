@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 type Experience = {
@@ -17,6 +17,67 @@ export function ExperienceSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeTab, setActiveTab] = useState(0);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [hasAutoScrolled, setHasAutoScrolled] = useState(false);
+
+  // Check scroll position and update progress
+  useEffect(() => {
+    const checkScroll = () => {
+      if (!tabsRef.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      const progress = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+      setScrollProgress(progress);
+    };
+
+    const tabsElement = tabsRef.current;
+    if (tabsElement) {
+      checkScroll();
+      tabsElement.addEventListener("scroll", checkScroll);
+      window.addEventListener("resize", checkScroll);
+    }
+
+    return () => {
+      if (tabsElement) {
+        tabsElement.removeEventListener("scroll", checkScroll);
+      }
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, [activeTab]);
+
+  // Auto-scroll animation when section first comes into view
+  useEffect(() => {
+    if (isInView && !hasAutoScrolled && tabsRef.current) {
+      const tabsElement = tabsRef.current;
+      const { scrollWidth, clientWidth } = tabsElement;
+      const maxScroll = scrollWidth - clientWidth;
+
+      // Only auto-scroll if there's content to scroll
+      if (maxScroll > 0) {
+        // Wait a bit for the section to be visible, then scroll
+        const timer = setTimeout(() => {
+          tabsElement.scrollTo({
+            left: maxScroll * 0.3, // Scroll to 30% of max scroll
+            behavior: "smooth",
+          });
+
+          // Scroll back to start after a delay
+          setTimeout(() => {
+            tabsElement.scrollTo({
+              left: 0,
+              behavior: "smooth",
+            });
+            setHasAutoScrolled(true);
+          }, 1500);
+        }, 800);
+
+        return () => clearTimeout(timer);
+      } else {
+        setHasAutoScrolled(true);
+      }
+    }
+  }, [isInView, hasAutoScrolled]);
 
   const experiences: Experience[] = [
     {
@@ -116,22 +177,73 @@ export function ExperienceSection() {
             variants={itemVariants}
             className="flex flex-col md:flex-row gap-6"
           >
-            {/* Company tabs */}
-            <div className="md:w-64 md:border-l border-border flex md:flex-col overflow-x-auto md:overflow-visible scrollbar-hide">
-              {experiences.map((exp, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTab(index)}
-                  className={cn(
-                    "px-4 py-3 text-left font-mono text-sm whitespace-nowrap transition-colors duration-200",
-                    activeTab === index
-                      ? "text-primary bg-primary/5 md:border-l-2 md:border-primary md:-ml-[2px]"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  )}
-                >
-                  {exp.company}
-                </button>
-              ))}
+            {/* Company tabs with scroll indicator */}
+            <div className="relative md:w-64">
+              {/* Scrollable tabs container */}
+              <div
+                ref={tabsRef}
+                className="md:border-l border-border flex md:flex-col overflow-x-auto md:overflow-visible scrollbar-hide scroll-smooth relative"
+              >
+                {experiences.map((exp, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveTab(index)}
+                    className={cn(
+                      "px-4 py-3 text-left font-mono text-sm whitespace-nowrap transition-colors duration-200",
+                      activeTab === index
+                        ? "text-primary bg-primary/5 md:border-l-2 md:border-primary md:-ml-[2px]"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    )}
+                  >
+                    {exp.company}
+                  </button>
+                ))}
+              </div>
+
+              {/* Fancy horizontal scroll indicator bar */}
+              <div className="mt-4 md:hidden">
+                <div className="relative h-1.5 bg-border/20 rounded-full overflow-hidden">
+                  {/* Progress bar */}
+                  <motion.div
+                    className="absolute left-0 top-0 h-full bg-primary rounded-full"
+                    style={{ width: `${scrollProgress}%` }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                  />
+                  {/* Animated shimmer effect */}
+                  <motion.div
+                    className="absolute top-0 h-full w-1/3 bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+                    style={{ left: `${scrollProgress - 33}%` }}
+                    animate={{
+                      opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </div>
+                {/* Scroll dots indicator */}
+                <div className="flex items-center justify-center gap-1.5 mt-2">
+                  {experiences.map((_, index) => (
+                    <motion.div
+                      key={index}
+                      className={cn(
+                        "h-1.5 rounded-full transition-all duration-300",
+                        index === activeTab
+                          ? "w-6 bg-primary"
+                          : "w-1.5 bg-border/40"
+                      )}
+                      initial={{ scale: 0.8, opacity: 0.5 }}
+                      animate={{
+                        scale: index === activeTab ? 1.2 : 1,
+                        opacity: index === activeTab ? 1 : 0.4,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Experience content */}
