@@ -162,7 +162,7 @@ export function ProjectsSection() {
             <span className="text-primary font-mono text-lg md:text-xl">
               03.
             </span>
-            Some Things I've Built
+            Some Of My Projects
             <div className="h-px bg-border flex-grow ml-4 opacity-30 dark:opacity-50"></div>
           </motion.h2>
 
