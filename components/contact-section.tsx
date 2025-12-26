@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Send, Check } from "lucide-react"
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Send, Check } from "lucide-react";
 
 export function ContactSection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  })
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -31,7 +31,7 @@ export function ContactSection() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -40,65 +40,67 @@ export function ContactSection() {
       y: 0,
       transition: { duration: 0.5 },
     },
-  }
+  };
 
   // Simple validation
   function validate() {
     if (!formData.name.trim()) {
-      setError("Please enter your name.")
-      return false
+      setError("Please enter your name.");
+      return false;
     }
     if (!formData.email.trim()) {
-      setError("Please enter your email.")
-      return false
+      setError("Please enter your email.");
+      return false;
     }
     // Basic email regex check
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setError("Please enter a valid email address.")
-      return false
+      setError("Please enter a valid email address.");
+      return false;
     }
     if (!formData.subject.trim()) {
-      setError("Please enter a subject.")
-      return false
+      setError("Please enter a subject.");
+      return false;
     }
     if (!formData.message.trim()) {
-      setError("Please enter a message.")
-      return false
+      setError("Please enter a message.");
+      return false;
     }
-    setError("")
-    return true
+    setError("");
+    return true;
   }
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setFormData(prev => ({
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    setFormData((prev) => ({
       ...prev,
       [e.target.id]: e.target.value,
-    }))
+    }));
   }
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (!validate()) return
+    if (!validate()) return;
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     // Construct mailto link
     const mailto = `mailto:luckyslnz@gmail.com?subject=${encodeURIComponent(
       formData.subject
     )}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    )}`
+    )}`;
 
     // Open mail client
-    window.location.href = mailto
+    window.location.href = mailto;
 
     // Simulate submission success after short delay
     setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-    }, 1000)
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }, 1000);
   }
 
   return (
@@ -117,20 +119,34 @@ export function ContactSection() {
           variants={containerVariants}
           className="text-center"
         >
-          <motion.h2 variants={itemVariants} className="text-3xl font-bold mb-4">
-            <span className="text-primary font-mono text-xl">04.</span> Get In Touch
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl font-bold mb-4"
+          >
+            <span className="text-primary font-mono text-xl">04.</span> Send Me
+            A Message
           </motion.h2>
 
-          <motion.p variants={itemVariants} className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my
-            best to get back to you!
+          <motion.p
+            variants={itemVariants}
+            className="text-muted-foreground mb-8 max-w-xl mx-auto"
+          >
+            I'm currently looking for new opportunities. Whether you have a
+            question or just want to say hi, I'll get back to you as soon as
+            possible.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="bg-card border border-border rounded-lg p-6 md:p-8 shadow-lg">
+          <motion.div
+            variants={itemVariants}
+            className="bg-card border border-border rounded-lg p-6 md:p-8 shadow-lg"
+          >
             <form className="space-y-4" onSubmit={handleSubmit} noValidate>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-left block">
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-medium text-left block"
+                  >
                     Name
                   </label>
                   <Input
@@ -143,7 +159,10 @@ export function ContactSection() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-left block">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-left block"
+                  >
                     Email
                   </label>
                   <Input
@@ -159,7 +178,10 @@ export function ContactSection() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-left block">
+                <label
+                  htmlFor="subject"
+                  className="text-sm font-medium text-left block"
+                >
                   Subject
                 </label>
                 <Input
@@ -173,7 +195,10 @@ export function ContactSection() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-left block">
+                <label
+                  htmlFor="message"
+                  className="text-sm font-medium text-left block"
+                >
                   Message
                 </label>
                 <Textarea
@@ -191,7 +216,11 @@ export function ContactSection() {
                 <p className="text-red-500 text-sm text-left">{error}</p>
               )}
 
-              <Button type="submit" className="w-full sm:w-auto" disabled={isSubmitting || isSubmitted}>
+              <Button
+                type="submit"
+                className="w-full sm:w-auto"
+                disabled={isSubmitting || isSubmitted}
+              >
                 {isSubmitting ? (
                   <>
                     <Send className="h-4 w-4 mr-2 animate-spin" />
@@ -214,5 +243,5 @@ export function ContactSection() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
