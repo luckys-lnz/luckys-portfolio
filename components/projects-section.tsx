@@ -51,6 +51,19 @@ export function ProjectsSection() {
       featured: true,
     },
     {
+      title: "Offside",
+      description:
+        "Offside is designed to seamlessly integrate every aspect of your soccer journey, from booking the perfect pitch to rallying your team for an epic match.",
+      tags: [
+        "Webflow",
+        "javascript",
+      ],
+      image: "/offside.soccer.png",
+      demo: "https://offside.soccer/",
+      // github: "https://github.com/luckys-lnz/offside.soccer",
+      featured: true,
+    },
+    {
       title: "Krystal12",
       description:
         "A concept design for an oil and gas company website, The site contains static Data and not fully implemented.",
