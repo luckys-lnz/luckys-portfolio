@@ -15,89 +15,100 @@ export function HeroSection() {
       </div>
 
       <div className="container max-w-screen-lg relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-start gap-4 max-w-3xl"
-        >
-          {/* Intro */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-primary font-mono text-sm md:text-base"
-          >
-            Hi, I’m
-          </motion.p>
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className="flex flex-col items-start gap-4 max-w-3xl"
+  >
+    {/* Intro */}
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="text-primary font-mono text-sm md:text-base"
+    >
+      Hi, I'm
+    </motion.p>
 
-          {/* Name - dominant */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-6xl md:text-7xl font-extrabold tracking-tight"
-          >
-            Lucky Archibong
-          </motion.h1>
+    {/* Name */}
+    <motion.h1
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="text-6xl md:text-7xl font-extrabold tracking-tight"
+    >
+      Lucky Archibong
+    </motion.h1>
 
-          {/* Value statement - supporting */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3, ease: "easeInOut" }}
-            className="text-2xl md:text-3xl font-semibold text-muted-foreground mt-2"
-          >
-            I build <span className="text-primary">scalable web applications</span> that solve real problems.
-          </motion.h2>
+    {/* Value proposition */}
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+      className="text-2xl md:text-3xl font-semibold text-muted-foreground mt-2"
+    >
+      I build <span className="text-primary">production-ready software</span>{" "}
+      for modern businesses.
+    </motion.h2>
 
-          {/* Technical about me */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-muted-foreground text-base md:text-lg max-w-xl mt-4"
-          >
-            I am a Software Engineer specializing in full-stack development, clean architecture, and user-focused digital products.
-          </motion.p>
+    {/* Supporting statement */}
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.4 }}
+      className="text-muted-foreground text-base md:text-lg max-w-xl mt-4 leading-relaxed"
+    >
+      I design and build backend systems, modern web applications, payment
+      infrastructure, and AI-powered products with a focus on reliability,
+      clean architecture, and long-term maintainability.
+    </motion.p>
 
-          {/* CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 mt-6"
-          >
-            <Button
-              size="lg"
-              className="group"
-              onClick={() => {
-                const element = document.querySelector("#projects");
-                if (element) {
-                  const offsetTop =
-                    element.getBoundingClientRect().top + window.pageYOffset;
-                  window.scrollTo({ top: offsetTop - 80, behavior: "smooth" });
-                }
-              }}
-            >
-              View my work
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => {
-                const element = document.querySelector("#contact");
-                if (element) {
-                  const offsetTop =
-                    element.getBoundingClientRect().top + window.pageYOffset;
-                  window.scrollTo({ top: offsetTop - 80, behavior: "smooth" });
-                }
-              }}
-            >
-              Get in touch
-            </Button>
-          </motion.div>
+    {/* CTA */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.6 }}
+      className="flex flex-col sm:flex-row gap-4 mt-6"
+    >
+      <Button
+        size="lg"
+        className="group"
+        onClick={() => {
+          const element = document.querySelector("#projects");
+          if (element) {
+            const offsetTop =
+              element.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+              top: offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        }}
+      >
+        Explore Projects
+        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </Button>
+
+      <Button
+        size="lg"
+        variant="outline"
+        onClick={() => {
+          const element = document.querySelector("#contact");
+          if (element) {
+            const offsetTop =
+              element.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+              top: offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        }}
+      >
+        Let's Connect
+      </Button>
+    </motion.div>
+
 
           {/* Social links */}
           <motion.div
