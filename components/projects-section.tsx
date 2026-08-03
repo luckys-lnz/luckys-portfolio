@@ -24,11 +24,11 @@ export function ProjectsSection() {
   // Project Data
   const projects: Project[] = [
     {
-      title: "Book & Pay GH",
+      title: "Sikakoraa",
       description:
         "A multi-tenant booking and payments platform for service businesses, featuring secure booking workflows, Paystack integration, role-based access control, and business-specific payment configuration.",
       tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
-      image: "/bookandpay.png",
+      image: "/sikakoraa.png",
       github: "https://github.com/luckys-lnz/book-and-payGH",
       demo: "https://bookandpaygh.com",
       featured: true,
