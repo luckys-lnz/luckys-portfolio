@@ -26,7 +26,7 @@ export function ProjectsSection() {
     {
       title: "Book & Pay GH",
       description:
-        "Book & Pay GH is a SaaS platform that helps local service-based businesses in Ghana manage bookings, payments all in one simple web app.",
+        "A multi-tenant booking and payments platform for service businesses, featuring secure booking workflows, Paystack integration, role-based access control, and business-specific payment configuration.",
       tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
       image: "/bookandpay.png",
       github: "https://github.com/luckys-lnz/book-and-payGH",
@@ -36,7 +36,7 @@ export function ProjectsSection() {
     {
       title: "Task Master",
       description:
-        "A simple and efficient Todo Manager to track tasks, set deadlines, and prioritize. Perfect for boosting productivity.",
+        "A simple and efficient productivity tool for tracking tasks, set deadlines, and prioritize. Perfect for boosting productivity.",
       tags: [
         "NextJs",
         "PostgreSql",
@@ -54,23 +54,27 @@ export function ProjectsSection() {
       title: "Offside",
       description:
         "Offside is designed to seamlessly integrate every aspect of your soccer journey, from booking the perfect pitch to rallying your team for an epic match.",
-      tags: [
-        "Webflow",
-        "javascript",
-      ],
+      tags: ["Webflow", "javascript"],
       image: "/offside.soccer.png",
       demo: "https://offside.soccer/",
       // github: "https://github.com/luckys-lnz/offside.soccer",
       featured: true,
     },
     {
-      title: "Krystal12",
+      title: "Kunanyesha",
       description:
-        "A concept design for an oil and gas company website, The site contains static Data and not fully implemented.",
-      tags: ["React", "TypeScript", "Node.js", "MongoDB", "Chart.js"],
+        "A weather reporting and forecasting platform for Kenya that integrates meteorological data APIs to deliver localized weather insights and forecasts.",
+      tags: [
+        "Nextjs",
+        "TypeScript",
+        "Python",
+        "supabase",
+        "GIS",
+        "OpenWeatherMap API",
+      ],
       image: "/k12.png",
-      github: "https://github.com/luckys-lnz/krystal",
-      demo: "https://krystal-phi.vercel.app/",
+      github: "https://github.com/luckys-lnz/kunanyesha",
+      demo: "https://kunanyesha.archomak.com/",
       featured: true,
     },
     {
