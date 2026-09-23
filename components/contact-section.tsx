@@ -71,7 +71,7 @@ export function ContactSection() {
   }
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     setFormData((prev) => ({
       ...prev,
@@ -88,9 +88,9 @@ export function ContactSection() {
 
     // Construct mailto link
     const mailto = `mailto:luckyarchibong.e@gmail.com?subject=${encodeURIComponent(
-      formData.subject
+      formData.subject,
     )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`,
     )}`;
 
     // Open mail client
