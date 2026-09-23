@@ -189,18 +189,20 @@ export function ProjectsSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${project.title} live demo or repository`}
-                    className="block rounded-md overflow-hidden shadow-lg"
+                    className="block rounded-xl overflow-hidden shadow-lg shadow-slate-950/10 transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-primary/20"
                   >
-                    {/* Image Container with Accent Tint */}
-                    <div className="relative rounded-md overflow-hidden aspect-[16/10] bg-primary">
-                      <Image
-                        src={project.image}
-                        alt={`Screenshot of ${project.title}`}
-                        fill
-                        className="object-cover transition-all duration-500 mix-blend-multiply opacity-90 group-hover:mix-blend-normal group-hover:opacity-100 group-hover:scale-110"
-                      />
-                      {/* Subtle Overlay to ensure color matching */}
-                      <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500" />
+                    {/* Image frame keeps screenshots vivid while adding a distinctive accent. */}
+                    <div className="relative rounded-xl overflow-hidden aspect-[16/10] bg-gradient-to-br from-primary via-fuchsia-500/70 to-amber-300 p-[2px]">
+                      <div className="relative h-full overflow-hidden rounded-[10px] bg-slate-950">
+                        <Image
+                          src={project.image}
+                          alt={`Screenshot of ${project.title}`}
+                          fill
+                          className="object-cover opacity-100 saturate-110 contrast-105 transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/25 via-transparent to-amber-200/20 mix-blend-screen transition-opacity duration-500 group-hover:opacity-60" />
+                        <div className="absolute inset-0 opacity-20 mix-blend-overlay [background-image:linear-gradient(rgba(255,255,255,0.25)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.25)_1px,transparent_1px)] [background-size:28px_28px]" />
+                      </div>
                     </div>
                   </Link>
                 </div>

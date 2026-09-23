@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 import { useRef } from "react";
 
 export function AboutSection() {
@@ -15,7 +14,7 @@ export function AboutSection() {
     "Node.js",
     "Python",
     "PostgreSQL",
-    "Docker",
+    "SQL",
     "Tailwind CSS",
   ];
 
@@ -47,41 +46,40 @@ export function AboutSection() {
             </h2>
           </motion.div>
 
-          {/* Content Grid */}
-          <div className="grid md:grid-cols-12 gap-12 items-center">
-            {/* Text Content */}
+          <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
             <motion.div
-  variants={itemVariants}
-  className="md:col-span-7 space-y-6"
->
-  <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
-    <p>
-      I'm a software engineer who builds products for businesses. I enjoy
-      understanding how people work before writing code, then designing
-      software that simplifies operations, automates repetitive work, and
-      scales reliably.
-    </p>
+              variants={itemVariants}
+              className="md:col-span-7 space-y-5"
+            >
+              <p className="max-w-2xl text-base md:text-lg leading-relaxed text-muted-foreground">
+                I'm a software engineer who builds products for businesses. I
+                enjoy understanding how people work before writing code, then
+                designing software that simplifies operations, automates
+                repetitive work, and scales reliably.
+              </p>
+              <p className="max-w-2xl text-base md:text-lg leading-relaxed text-muted-foreground">
+                Most of my work is around production-ready web applications,
+                backend systems, payment integrations, and AI-powered tools that
+                solve practical business problems.
+              </p>
+            </motion.div>
 
-    <p>
-      Most of my work is around building production-ready web applications,
-      backend systems, payment integrations, and AI-powered tools that solve
-      practical business problems.
-    </p>
-
-    <p>Current stack focus:</p>
-  </div>
-
-  <ul className="grid grid-cols-2 gap-2 text-sm font-mono">
-    {skills.map((skill, idx) => (
-      <li key={idx} className="flex items-center gap-2 group">
-        <span className="text-primary group-hover:translate-x-1 transition-transform">
-          ▹
-        </span>
-        {skill}
-      </li>
-    ))}
-  </ul>
-</motion.div>
+            <motion.div
+              variants={itemVariants}
+              className="md:col-span-5 border-l-2 border-primary pl-6 md:pl-8"
+            >
+              <p className="mb-5 font-mono text-sm text-primary">
+                Current stack focus
+              </p>
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm font-mono text-muted-foreground">
+                {skills.map((skill) => (
+                  <li key={skill} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 bg-primary" />
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </motion.div>
       </div>
