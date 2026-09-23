@@ -87,7 +87,7 @@ export function ContactSection() {
     setIsSubmitting(true);
 
     // Construct mailto link
-    const mailto = `mailto:luckyslnz@gmail.com?subject=${encodeURIComponent(
+    const mailto = `mailto:luckyarchibong.e@gmail.com?subject=${encodeURIComponent(
       formData.subject
     )}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
