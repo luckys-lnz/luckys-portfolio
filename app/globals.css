@@ -85,3 +85,27 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+html {
+  scroll-padding-top: 4.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Shiki dual themes */
+.code-block pre {
+  padding: 1rem 1.25rem;
+  background: transparent !important;
+  width: max-content;
+  min-width: 100%;
+}
+.code-block span {
+  color: var(--shiki-light);
+}
+.dark .code-block span {
+  color: var(--shiki-dark);
+}

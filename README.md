@@ -1,54 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# luckyarchibong.vercel.app
 
-## Setup
+My personal site: a short intro, case studies of three projects, other work, experience and contact.
 
-To set up this portfolio locally, follow these steps:
+The case studies are the point of the site. Each one explains how a project works, with code taken from its repository: how [Sikakoraa](https://luckyarchibong.vercel.app/work/sikakoraa) makes sure a payment is applied exactly once, how [Task Master](https://luckyarchibong.vercel.app/work/task-master) stopped recurring tasks from duplicating themselves, and how [Forest](https://luckyarchibong.vercel.app/work/forest) ranks a dinner for two people.
 
-1. **Clone the Repository**:
-    ```bash
-    git clone https://github.com/your-username/luckys-portfolio.git
-    cd luckys-portfolio
-    ```
+## Running it
 
-2. **Install Dependencies**:
-    ```bash
-    npm install
-    # or
-    yarn install
-    # or
-    pnpm install
-    # or
-    bun install
-    ```
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build; run it before pushing
+```
 
-3. **Run the Development Server**:
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    # or
-    bun dev
-    ```
+Needs Node 18.18 or later. There are no environment variables.
 
-4. **View the Application**:
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-## Portfolio Features
+## Where things are
 
-This portfolio showcases the following features:
+```
+content/                 everything you read on the site
+  work.ts                the list of case studies and their types
+  case-studies/*.ts      one file per case study
+  projects.ts            "Other projects"
+  experience.ts          experience and education
+lib/site.ts              name, URL, email, resume path, social links
+app/page.tsx             home page
+app/work/[slug]/         case study pages, plus a share image for each
+components/code-block.tsx  syntax highlighting
+public/docs/LA.pdf       resume
+```
 
-- **Projects Section**: Highlighting key projects with descriptions, technologies used, and links to live demos or repositories.
-- **About Me**: A brief introduction, including skills, experience, and interests.
-- **Contact Form**: A functional form to allow visitors to reach out directly.
-- **Responsive Design**: Optimized for viewing on various devices, including desktops, tablets, and mobile phones.
-- **Dark Mode**: A toggle for switching between light and dark themes.
+Text lives in `content/` as typed data, separate from the pages. Changing a job or a project is a data edit, and TypeScript catches a missing field.
 
+## Adding a case study
 
-## Feedback and Contributions
+1. Create `content/case-studies/<slug>.ts` exporting a `CaseStudy`. Use `sikakoraa.ts` as a reference.
+2. Add it to the `caseStudies` array in `content/work.ts`.
+3. Put the screenshot in `public/` and set its real width and height.
 
-If you have suggestions or want to contribute, feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/your-username/luckys-portfolio).
+That's all. The page, its share image, its sitemap entry and its link from the home page come from that array.
 
-## License
+A section's `body` is a list of blocks:
 
-This project is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).
+```ts
+"A paragraph. `Backticks` become inline code.",
+{ list: ["A bullet", "Another bullet"] },
+{ code: "select 1;", lang: "sql", file: "path/shown/above/the/block.sql" },
+```
+
+Code is highlighted with [Shiki](https://shiki.style) when the site builds, so the browser gets plain HTML with no highlighting JavaScript. Snippets are trimmed from the real files, with `...` where lines were removed. Keep them that way: if a snippet doesn't match its file, it shouldn't be on the page.
+
+## How it's built
+
+- Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS.
+- Every page is static and rendered on the server. The only client-side JavaScript is the theme toggle and the "Copy" email button.
+- `app/sitemap.ts`, `app/robots.ts` and `app/manifest.ts` generate those files from the same data as the pages, so new case studies show up in the sitemap automatically.
+- Share images are generated at build time by `lib/og.tsx`: one for the site and one per case study.
+- Structured data (`Person`, `WebSite`, `ProfilePage`, and `CreativeWork` per case study) is in `app/layout.tsx` and the case study page.
+
+Deployed on Vercel from `master`.
+
+## Reusing this
+
+There's no licence file, so the code isn't licensed for reuse yet. The writing, resume and screenshots are mine and aren't for reuse either way. If you want to borrow something, open an issue and ask.

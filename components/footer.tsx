@@ -1,27 +1,22 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { SocialLinks } from "@/components/social-links";
+import { siteConfig } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="py-6 border-t border-gray-200 dark:border-gray-700">
-      <div className="container mx-auto flex flex-col items-center justify-center gap-2 text-center">
-        <p className="text-sm text-muted-foreground">
-          Designed & Built by{" "}
-          <motion.a
+    <footer className="mt-24 border-t border-border">
+      <div className="mx-auto flex max-w-2xl flex-col gap-4 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>
+          &copy; {new Date().getFullYear()} {siteConfig.name}.{" "}
+          <a
             href="https://github.com/luckys-lnz/luckys-portfolio"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary font-medium underline-offset-4 hover:underline"
-            whileHover={{ scale: 1.05, color: "#3b82f6" }}
-            transition={{ type: "spring", stiffness: 300 }}
+            className="underline underline-offset-4 hover:text-foreground"
           >
-            Lucky Archibong
-          </motion.a>
+            Source
+          </a>
         </p>
-        <p className="text-xs text-muted-foreground select-none">
-          &copy; {new Date().getFullYear()} All Rights Reserved
-        </p>
+        <SocialLinks className="-ml-2.5 sm:ml-0 sm:-mr-2.5" />
       </div>
     </footer>
   );
