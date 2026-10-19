@@ -74,14 +74,14 @@
 
 <div class="entry">
   <div class="row"><div><span class="title">Founder and Software Engineer</span> | Archomak</div><div class="when">Apr 2025 – Present</div></div>
-  <div class="sub">Sikakoraa (sikakoraa.com): booking marketplace with mobile-money deposits and payouts. Two-person engineering team.</div>
+  <div class="sub">Sikakoraa (sikakoraa.com): booking marketplace with mobile-money deposits and payouts.</div>
   <ul>
     <li>Made payments crash-safe, so a server crash or a repeated webhook can't lose or double-apply a deposit: events are stored before processing and settled in one locked Postgres transaction.</li>
     <li>Built M-Pesa and bank payouts that retry automatically but never pay twice, using a state machine that fixes the amount up front and only retries when no money could have moved.</li>
     <li>Moved email and notifications out of the request path into a Postgres job queue with leases and safe retries, so a slow or failing email provider no longer breaks bookings.</li>
     <li>Prevented overbooking under concurrent requests with database-level capacity checks and locks, and recorded every booking change in an audit log.</li>
     <li>Evaluated payment providers for partial deposits and Kenyan coverage, and migrated the product from Paystack (Ghana) to IntaSend (Kenya). Set up CI with type checks, unit and end-to-end tests.</li>
-    <li>Co-built Kunanyesha: weekly weather reports for all 47 Kenyan counties from GFS forecast data (Next.js, FastAPI, GeoPandas).</li>
+    <li>Built Kunanyesha: weekly weather reports for all 47 Kenyan counties from GFS forecast data (Next.js, FastAPI, GeoPandas).</li>
   </ul>
 </div>
 
