@@ -27,23 +27,23 @@ export default function Home() {
 
         <div className="mt-8 space-y-4 leading-7">
           <p>
-            I build the backend-heavy parts of web products: bookings,
-            payments, background jobs, and the database rules that keep them
-            correct.
-          </p>
-          <p>
-            Right now that&apos;s{" "}
+            I&apos;m Lucky, a software engineer. I run{" "}
+            <a href="https://archomak.com" className={link}>
+              Archomak
+            </a>
+            , where I&apos;m building{" "}
             <Link href="/work/sikakoraa" className={link}>
               Sikakoraa
-            </Link>
-            , a service marketplace in Kenya where customers book local
-            professionals and pay a deposit by mobile money. Before that I did
-            contract work for jobmatch and Offside, and worked at Motito and
-            TheDevBuild.
+            </Link>{" "}
+            with deantosh: booking pages for service businesses in Kenya, where
+            customers pick a time and pay a deposit by M-Pesa or card. Before
+            that I did contract work for jobmatch and Offside, and worked at
+            Motito and TheDevBuild.
           </p>
           <p>
-            I mostly write TypeScript, Python and SQL, usually with Next.js,
-            Node.js and PostgreSQL.
+            I studied Computer Science at Accra Institute of Technology and
+            software engineering at ALX. I mostly write TypeScript, Python and
+            SQL.
           </p>
         </div>
 

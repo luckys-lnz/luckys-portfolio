@@ -3,7 +3,7 @@ export const siteConfig = {
   url: "https://luckyarchibong.vercel.app",
   title: "Lucky Archibong | Software Engineer",
   description:
-    "Lucky Archibong is a software engineer who builds the backend-heavy parts of web products: bookings, payments, background jobs and the databases behind them. Case studies, projects and experience.",
+    "Lucky Archibong is a software engineer who builds web products end to end, from the pages people use to the database behind them. Case studies, projects and experience.",
   email: "luckyarchibong.e@gmail.com",
   resume: "/docs/LA.pdf",
   twitterHandle: "@livinginpixel",

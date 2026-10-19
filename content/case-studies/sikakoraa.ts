@@ -6,7 +6,7 @@ export const sikakoraa: CaseStudy = {
   slug: "sikakoraa",
   title: "Sikakoraa",
   summary:
-    "A service marketplace for Kenya. Customers find local professionals, book them and pay a deposit by mobile money. Businesses get a booking page, manage requests and get paid out when the job is done.",
+    "Booking pages for service businesses in Kenya. Customers choose a service, pick a time and pay a deposit by M-Pesa or card. The business is paid out to M-Pesa or a bank account when the job is done.",
   year: "2025 to now",
   role: "Built with deantosh. I did the payment reliability, job queue and booking lifecycle work described here.",
   stack: [
@@ -45,7 +45,7 @@ export const sikakoraa: CaseStudy = {
     {
       heading: "Store the webhook first",
       body: [
-        "The webhook now does three things in order: authenticate, write the event to a `payment_events` table, then process it. Because the event is written first, a crash during processing can't lose it. A redelivered event maps to the same key, so it's stored once.",
+        "For a collection event, the webhook now does three things in order: authenticate, write the event to a `payment_events` table, then process it. Because the event is written first, a crash during processing can't lose it. A redelivered event maps to the same key, so it's stored once.",
         {
           file: "app/api/payments/intasend/webhook/route.ts",
           lang: "ts",
@@ -128,45 +128,75 @@ $$;`,
       ],
     },
     {
-      heading: "Payouts only retry when no money moved",
+      heading: "Paying the business",
       body: [
-        "Payouts are harder than collections. IntaSend's send-money API has no documented idempotency key, so if a request times out, there's no safe way to ask \"did that go through?\" and retry. A blind retry of a transfer that already happened pays twice.",
-        "So a payout is a state machine on the booking, and the rule is written at the top of the file:",
+        "When a booking is completed, the business is paid straight away. The payout is one IntaSend transfer for everything the business is owed at that moment, usually just that booking. In the code this is a batch, and the batch's id is the transfer's idempotency key:",
         {
-          file: "lib/payments/intasend-payouts.ts",
+          file: "lib/payments/payout-batches.ts",
           lang: "text",
           code: `
-NULL → processing → submitted → sent
-            │            │
-            ▼            ▼ (transfer failed, money did not move)
-          failed ◀───────┘ ──(backoff)──▶ processing (retry)
-
-The one rule that prevents double payouts: only retry when we KNOW no
-money moved. That is true for a definitive 4xx rejection, a pre-flight
-error (no destination), or a final "failed" transfer status. Timeouts,
-5xx, a crash mid-call, and "status cannot be determined" are ambiguous.
-Those go to needs_review for a human to check the IntaSend dashboard.`,
+completed ─▶ releaseBookingPayout ─▶ open_payout_batch ─▶ submit ─▶ submitted ─▶ sent
+                                           │                 │             │
+                                           ▼                 ▼             ▼
+                                  awaiting_approval   failed (retry)   needs_review
+                                  (above threshold:   with backoff,
+                                   an admin approves)  new batch/key)`,
         },
-        "In code, that's a three-way outcome from the submit call, not a boolean:",
+        "Opening a batch is one Postgres function. It takes an advisory lock for the business, refuses to open a second batch while one is still open (a partial unique index backs that up), and claims each booking with the same locked claim that snapshots the amount due. A booking can only be in one payout, and every retry pays the amount that was first calculated. Bookings that complete while a transfer is in flight wait, and are paid as soon as that transfer is confirmed sent. A daily reconcile run catches anything the immediate path missed.",
+      ],
+    },
+    {
+      heading: "Never paying twice",
+      body: [
+        "`send-money/initiate` only queues a transfer (status `BP101`). It completes or fails later (`TS100` or `TF106`), so a 2xx means submitted, not paid. And a request can time out after IntaSend has already queued the transfer.",
+        "The first version sent transfers without an idempotency key, so an unknown outcome always went to a person to check by hand. Now every transaction in the request carries an `idempotency_key`, and IntaSend refuses a repeat of the same key as a duplicate. That changes what each answer means, so the submit call returns four outcomes, not a boolean:",
         {
           file: "lib/payments/intasend-payouts.ts",
           lang: "ts",
           code: `
 try {
-  const resp = await intasendPost("/api/v1/send-money/initiate/", body, {
-    auth: "secret",
-    timeoutMs: 20_000,
-  });
+  const resp = await intasendPost("/api/v1/send-money/initiate/", {
+    provider,
+    currency: input.currency,
+    requires_approval: "NO",
+    batch_reference: input.idempotencyKey,
+    transactions: [transaction],
+  }, { auth: "secret", timeoutMs: 20_000 });
   return { kind: "submitted", trackingId: resp?.tracking_id ?? resp?.file_id ?? null };
 } catch (error) {
+  // A duplicate is a 4xx too, but it means the transfer EXISTS: never
+  // treat it as "refused, safe to retry".
+  if (isDuplicateTransferError(error)) return { kind: "duplicate" };
   if (error instanceof IntaSendError && error.isDefinitiveRejection) {
     return { kind: "rejected", error: error.message };
   }
-  // IntaSend might have queued the transfer. Not safe to retry blindly.
   return { kind: "ambiguous", error: error instanceof Error ? error.message : String(error) };
 }`,
         },
-        "Before any call goes out, a Postgres function claims the payout and snapshots the amount due, in one locked transaction. Two workers can't both claim it, and every retry pays exactly the amount that was originally calculated, however many attempts it takes. Retries back off from 15 minutes up to 12 hours and stop after six attempts. A claim stuck in `processing` for more than 15 minutes means the process died mid-call, so it goes to review instead of being retried.",
+        {
+          list: [
+            "Submitted or duplicate: the transfer exists. Wait for IntaSend to say how it ended.",
+            "Rejected: IntaSend refused it, so no money moved. Retry later as a new batch with a new key, backing off from 15 minutes up to 12 hours, and hand it to a person after six attempts.",
+            "Ambiguous (a timeout or 5xx): send it again with the same key, twice in the request and then on the reconcile run. If the first one got through, IntaSend answers duplicate and nothing is paid twice.",
+          ],
+        },
+        "IntaSend's docs don't say how long a key is remembered, so a batch that still hasn't been confirmed after 48 hours goes to a person instead of being resent.",
+        "The webhook now handles payout events as well as collections, told apart by `topic`. A `send_money_event` isn't taken on its word: the handler looks the transfer up through `send-money/status` before settling anything, and a cron polls submitted transfers in case an event never arrives. Because of that poll, a payout event that fails to apply is still acknowledged with a 200: IntaSend disables an endpoint that keeps failing, which would stop collection events too.",
+      ],
+    },
+    {
+      heading: "Checks before money moves",
+      body: [
+        "The payout code checks a few things before every transfer. The first is there so that someone who takes over a business's account can't redirect its money before the owner sees the security email:",
+        {
+          list: [
+            "A payout account changed in the last 48 hours isn't paid. The change time is set by a database trigger whenever the M-Pesa number or bank account changes, and browser clients can't write it.",
+            "If the account changed after a batch was prepared (an approval can come days later), the batch goes to a person instead of being sent.",
+            "Each business has a daily cap, counted on the Nairobi calendar day across all of that day's batches. Batches over an approval threshold wait for an admin.",
+            "The batch amount is checked against the bookings it pays, minus any recovered transfer fees, right before the call goes out.",
+          ],
+        },
+        "IntaSend's transfer fee is the business's. It's recorded in a `payout_ledger` table when a transfer completes and taken from the next payout, never leaving less than the minimum payout. Every step (batched, held, approved, submitted, sent, failed) is written to `payout_audit`, which a trigger makes append-only.",
       ],
     },
     {
@@ -279,7 +309,7 @@ update public.jobs j
 returning j.*;`,
         },
         "Each job has a lease, so a crashed worker's job becomes claimable again. A job whose lease expired on its last attempt crashed its worker every time, so it's marked dead instead of being picked up forever. Delivery is at-least-once, and idempotency keys at three levels (the job, the in-app notification, and Resend's own key) make a retry harmless.",
-        "Payouts deliberately don't use this queue. A generic queue retries on failure, and a payout must never be retried when its outcome is unknown.",
+        "Payouts don't use this queue. A generic queue retries any failure the same way, and a payout needs to know which failures are safe to retry, as described above.",
       ],
     },
     {
